@@ -13,14 +13,6 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     sourcemap: false,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router'],
-          'ui-vendor': ['lucide-react', 'recharts'],
-        },
-      },
-    },
   },
   server: {
     port: 3000,

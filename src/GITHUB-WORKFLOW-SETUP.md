@@ -1,5 +1,16 @@
 # 🔧 Hướng dẫn Setup GitHub Workflow
 
+## ⚠️ UPDATED - FIX BUILD ISSUE
+
+**Vấn đề phát hiện:** Build chạy nhưng không tạo `dist/` folder
+
+**Đã fix:**
+- ✅ Simplified `vite.config.ts` (remove rollupOptions)
+- ✅ Removed `tsconfig.node.json` references
+- ✅ Added extensive debug steps to workflow
+
+---
+
 ## 📋 BƯỚC 1: Tạo Workflow File
 
 ### ✅ Bạn ĐÃ HOÀN THÀNH bước này!

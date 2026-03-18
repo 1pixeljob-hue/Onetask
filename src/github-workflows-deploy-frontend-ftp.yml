@@ -27,8 +27,21 @@ jobs:
       - name: 📦 Install dependencies
         run: npm install
 
+      - name: 🔍 Debug - Check files before build
+        run: |
+          echo "=== Checking project files ==="
+          ls -la
+          echo ""
+          echo "=== Checking vite.config.ts ==="
+          cat vite.config.ts
+          echo ""
+          echo "=== Checking package.json build script ==="
+          cat package.json | grep -A 5 '"scripts"'
+
       - name: 🏗️ Build production
-        run: npm run build
+        run: |
+          echo "=== Starting Vite build ==="
+          npm run build
         env:
           NODE_ENV: production
 
@@ -36,11 +49,22 @@ jobs:
         run: |
           echo "=== Checking build output ==="
           ls -la
+          echo ""
           if [ -d "dist" ]; then
             echo "✅ dist/ folder exists"
+            echo "=== dist/ contents ==="
             ls -la dist/
+            echo ""
+            if [ -f "dist/index.html" ]; then
+              echo "✅ dist/index.html exists"
+            else
+              echo "❌ dist/index.html NOT found!"
+            fi
           else
             echo "❌ dist/ folder NOT found!"
+            echo ""
+            echo "=== Checking for other build outputs ==="
+            find . -name "index.html" -type f 2>/dev/null || echo "No index.html found anywhere"
             exit 1
           fi
 
