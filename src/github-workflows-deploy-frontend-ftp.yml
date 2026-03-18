@@ -32,6 +32,18 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: 🔍 Debug - List build output
+        run: |
+          echo "=== Checking build output ==="
+          ls -la
+          if [ -d "dist" ]; then
+            echo "✅ dist/ folder exists"
+            ls -la dist/
+          else
+            echo "❌ dist/ folder NOT found!"
+            exit 1
+          fi
+
       - name: 📤 Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
